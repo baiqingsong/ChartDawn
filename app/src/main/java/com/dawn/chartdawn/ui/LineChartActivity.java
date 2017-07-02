@@ -67,7 +67,7 @@ public class LineChartActivity extends BaseActivity {
         setLineChartListener();
         if (lineChart.getData() != null &&
                 lineChart.getData().getDataSetCount() > 0) {
-            refreshLineChart(entries);
+            refreshLineChart(entries, entries2);
         }else{
             LineDataSet dataSet = setLineChartStyle(entries);
             LineDataSet dataSet2 = setLineChartStyle2(entries2);
@@ -169,9 +169,11 @@ public class LineChartActivity extends BaseActivity {
      * 线性图表的刷新
      * @param entries
      */
-    private void refreshLineChart(ArrayList<Entry> entries){
+    private void refreshLineChart(List<Entry> entries, List<Entry> entries2){
         LineDataSet dataSet = (LineDataSet)lineChart.getData().getDataSetByIndex(0);
         dataSet.setValues(entries);
+        LineDataSet dataSet2 = (LineDataSet)lineChart.getData().getDataSetByIndex(1);
+        dataSet2.setValues(entries2);
         lineChart.getData().notifyDataChanged();
         lineChart.notifyDataSetChanged();
     }

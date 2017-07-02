@@ -29,4 +29,7 @@ public class MainActivity extends BaseActivity {
     public void jumpToLineChart(View view){
         jumpTo(LineChartActivity.class);
     }
+    public void jumpToBarChart(View view){
+        jumpTo(BarChartActivity.class);
+    }
 }
