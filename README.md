@@ -1,4 +1,4 @@
-# chart 的使用
+# chart的使用
 
 * [chart引用](#chart引用)
 * [LineChart使用](#linechart使用)
@@ -86,6 +86,7 @@ dependencies {
 
 ![line_chart](app/src/main/assets/line_chart.jpg "线性图表截图")
 
+[返回顶部](#chart的使用)
 ### LineChart事件的相关设置
 
 #### setTouchEnabled
@@ -193,7 +194,7 @@ lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 });
 ```
 
-
+[返回顶部](#chart的使用)
 ### LineChart展示的相关设置
 
 #### LineChart控件
@@ -273,6 +274,7 @@ lineChart.notifyDataSetChanged();
 
 ![bar_chart](app/src/main/assets/bar_chart.jpg "圆柱图表截图")
 
+[返回顶部](#chart的使用)
 ### BarChart事件的相关设置
 
 #### setDrawBarShadow
@@ -411,6 +413,7 @@ barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 });
 ```
 
+[返回顶部](#chart的使用)
 ### BarChart展示的相关设置
 
 #### BarChart控件
@@ -469,6 +472,7 @@ barChart.setData(barData);
 
 ![pie_chart](app/src/main/assets/pie_chart.jpg "饼状图表截图")
 
+[返回顶部](#chart的使用)
 ### PieChart事件的相关设置
 
 #### setUsePercentValues
@@ -575,7 +579,7 @@ pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 });
 ```
 
-
+[返回顶部](#chart的使用)
 ### PieChart展示的相关设置
 
 #### PieChart控件
