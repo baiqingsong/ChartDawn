@@ -41,8 +41,11 @@ dependencies {
 }
 ```
 
+## LineChart使用
 
-## LineChart事件的相关设置
+![line_chart]("app/src/main/assets/line_chart.jpg" "线性图表截图")
+
+### LineChart事件的相关设置
 
 #### setTouchEnabled
 是否可以触摸
@@ -148,7 +151,7 @@ lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
 ```
 
 
-## LineChart展示的相关设置
+### LineChart展示的相关设置
 
 #### LineChart控件
 Line Chart的xml中引用
