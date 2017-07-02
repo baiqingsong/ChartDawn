@@ -644,6 +644,7 @@ pieChart.setData(pieData);
 
 ![radar_chart](app/src/main/assets/radar_chart.jpg "雷达图表截图")
 
+[返回顶部](#chart的使用)
 ### RadarChart事件的相关设置
 
 #### setBackgroundColor
@@ -774,6 +775,7 @@ legend.setYEntrySpace(5f);
 legend.setTextColor(Color.WHITE);
 ```
 
+[返回顶部](#chart的使用)
 ### RadarChart展示的相关设置
 
 #### RadarChart控件
