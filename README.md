@@ -18,6 +18,7 @@
         * [LineChart控件](#linechart控件)
         * [Entry](#entry)
         * [LineDataSet](#linedataset)
+        * [LineDataSet.setMode](#linedataset.setmode)
         * [ArrayList<ILineDataSet>](#arraylist<ilinedataset>)
         * [LineData](#linedata)
         * [LineChart的数据添加](#linechart的数据添加)
@@ -241,7 +242,9 @@ LineDataSet dataSet = new LineDataSet(entries, "LineChart 1");
 样式设置，第一个参数是Entry的集合，第二个参数是曲线对应的意思  
 线的设置还有很多，其中包括
 ```
+LineDataSet dataSet = new LineDataSet(entries, "DataSet 1");
 dataSet.setDrawIcons(false);//是否采用Entry里面的图片
+dataSet.setMode(LineDataSet.Mode.LINEAR);
 dataSet.enableDashedLine(10f, 5f, 0f);//两点之间线的设置，每段线长，间隔长
 dataSet.enableDashedHighlightLine(10f, 5f, 0f);
 dataSet.setColor(Color.BLACK);//线的颜色
@@ -257,6 +260,12 @@ dataSet.setFormSize(20f);//下方线的区分中线的大小
 dataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));//下方线区分中线的样式
 Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_red);
 dataSet.setFillDrawable(drawable);//设置点下方颜色的填充
+```
+
+#### LineDataSet.setMode
+设置线性图表的链接样式，没两个点之间链接形态
+```
+dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 ```
 
 #### ArrayList<ILineDataSet>

@@ -123,6 +123,7 @@ public class LineChartActivity extends BaseActivity {
         //图表样式的设置
         LineDataSet dataSet = new LineDataSet(entries, "DataSet 1");
         dataSet.setDrawIcons(false);//是否采用Entry里面的图片
+        dataSet.setMode(LineDataSet.Mode.LINEAR);
         dataSet.enableDashedLine(10f, 5f, 0f);//两点之间线的设置，每段线长，间隔长
         dataSet.enableDashedHighlightLine(10f, 5f, 0f);
         dataSet.setColor(Color.BLACK);//线的颜色
@@ -148,6 +149,7 @@ public class LineChartActivity extends BaseActivity {
         //图表样式的设置
         LineDataSet dataSet = new LineDataSet(entries, "DataSet 2");
         dataSet.setDrawIcons(false);//是否采用Entry里面的图片
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         dataSet.enableDashedLine(10f, 5f, 0f);//两点之间线的设置，每段线长，间隔长
         dataSet.enableDashedHighlightLine(10f, 5f, 0f);
         dataSet.setColor(Color.YELLOW);//线的颜色
