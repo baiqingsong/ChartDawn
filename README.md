@@ -41,6 +41,7 @@
         * [BarDataSet](#BarDataSet)
         * [List<IBarDataSet>](#list<ibardataset>)
         * [BarData](#bardata)
+* [HorizontalBarChart使用](#horizontalbarchart使用)
     
 
 
@@ -432,3 +433,15 @@ barData.setBarWidth(0.9f);//设置圆柱宽度
 barChart.setData(barData);
 ```
 
+## HorizontalBarChart使用
+
+![bar_chart](app/src/main/assets/horizontal_bar_chart.jpg "线性图表截图")
+
+横向圆柱图表
+和BarChart的相关属性一致，不同的是控件
+```
+<com.github.mikephil.charting.charts.HorizontalBarChart
+    android:id="@+id/horizontal_bar_chart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```

@@ -5,7 +5,7 @@ import com.dawn.chartdawn.custom.BarAxisValueFormatter;
 import com.dawn.chartdawn.custom.BarMarkerView;
 import com.dawn.chartdawn.model.BarModel;
 import com.dawn.chartdawn.model.Model;
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -21,17 +21,16 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Created by 90449 on 2017/7/2.
  */
 
-public class BarChartActivity extends BaseActivity {
-    private BarChart barChart;
+public class HorizontalBarChartActivity extends BaseActivity {
+    private HorizontalBarChart horizontalBarChart;
     private List<BarEntry> barEntries;
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_bar_chart;
+        return R.layout.activity_horizontal_bar_chart;
     }
 
     @Override
@@ -46,49 +45,49 @@ public class BarChartActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        barChart = (BarChart) findViewById(R.id.bar_chart);
+        horizontalBarChart = (HorizontalBarChart) findViewById(R.id.horizontal_bar_chart);
     }
 
     @Override
     protected void initListener() {
-        setBarChartListener();
-        if (barChart.getData() != null &&
-                barChart.getData().getDataSetCount() > 0) {
-            refreshBarChart(barEntries);
+        setHorizontalBarChartListener();
+        if (horizontalBarChart.getData() != null &&
+                horizontalBarChart.getData().getDataSetCount() > 0) {
+            refreshHorizontalBarChart(barEntries);
         }else{
-            BarDataSet dataSet = setBarChartStyle(barEntries);
+            BarDataSet dataSet = setHorizontalBarChartStyle(barEntries);
             List<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataSet);
             BarData barData = new BarData(dataSets);
             barData.setValueTextSize(10f);//设置文字大小
             barData.setBarWidth(0.9f);//设置圆柱宽度
-            barChart.setData(barData);
+            horizontalBarChart.setData(barData);
         }
     }
     /**
      * 图表事件设置
      */
-    private void setBarChartListener(){
-        barChart.setDrawBarShadow(false);//除了圆柱外其他部分是否填充阴影
-        barChart.setDrawValueAboveBar(true);//是否将值写到圆柱上方
-        barChart.getDescription().setEnabled(false);//右下角的description是否显示
-//        barChart.setMaxVisibleValueCount(60);//设置最大显示圆柱数量
-//        barChart.setDrawGridBackground(false);
-        barChart.animateX(1000);//动画效果
+    private void setHorizontalBarChartListener(){
+        horizontalBarChart.setDrawBarShadow(false);//除了圆柱外其他部分是否填充阴影
+        horizontalBarChart.setDrawValueAboveBar(true);//是否将值写到圆柱上方
+        horizontalBarChart.getDescription().setEnabled(false);//右下角的description是否显示
+//        horizontalBarChart.setMaxVisibleValueCount(60);//设置最大显示圆柱数量
+//        horizontalBarChart.setDrawGridBackground(false);
+        horizontalBarChart.animateX(1000);//动画效果
 
-        XAxis xAxis = barChart.getXAxis();
+        XAxis xAxis = horizontalBarChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 //        xAxis.setGranularity(1f);
         xAxis.setLabelCount(6);//x坐标label数量最大
         xAxis.setDrawGridLines(false);
         xAxis.setValueFormatter(new BarAxisValueFormatter().new XAxisValueFormatter());
 
-        YAxis leftAxis = barChart.getAxisLeft();
+        YAxis leftAxis = horizontalBarChart.getAxisLeft();
         leftAxis.setValueFormatter(new BarAxisValueFormatter().new YAxisValueFormatter());
-        YAxis rightAxis = barChart.getAxisRight();
+        YAxis rightAxis = horizontalBarChart.getAxisRight();
         rightAxis.setValueFormatter(new BarAxisValueFormatter().new YAxisValueFormatter());
 
-        Legend legend = barChart.getLegend();
+        Legend legend = horizontalBarChart.getLegend();
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);//设置legend在图形下方
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);//设置legend和图形左对齐
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//设置legend和图形的位置关系
@@ -99,10 +98,10 @@ public class BarChartActivity extends BaseActivity {
 //        legend.setXEntrySpace(4f);
 
         BarMarkerView barMarkerView = new BarMarkerView(this, new BarAxisValueFormatter().new XAxisValueFormatter());
-        barMarkerView.setChartView(barChart);
-        barChart.setMarker(barMarkerView);
+        barMarkerView.setChartView(horizontalBarChart);
+        horizontalBarChart.setMarker(barMarkerView);
 
-        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+        horizontalBarChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry entry, Highlight h) {
                 toastUI(entry.getY() + "");
@@ -118,7 +117,7 @@ public class BarChartActivity extends BaseActivity {
      * 图表样式设置
      * @param barEntries
      */
-    private BarDataSet setBarChartStyle(List<BarEntry> barEntries){
+    private BarDataSet setHorizontalBarChartStyle(List<BarEntry> barEntries){
         //图表样式的设置
         BarDataSet dataSet = new BarDataSet(barEntries, "bar chart");
         dataSet.setDrawIcons(false);//是否采用Entry里面的图片
@@ -129,10 +128,10 @@ public class BarChartActivity extends BaseActivity {
      * 线性图表的刷新
      * @param barEntries
      */
-    private void refreshBarChart(List<BarEntry> barEntries){
-        BarDataSet dataSet = (BarDataSet)barChart.getData().getDataSetByIndex(0);
+    private void refreshHorizontalBarChart(List<BarEntry> barEntries){
+        BarDataSet dataSet = (BarDataSet)horizontalBarChart.getData().getDataSetByIndex(0);
         dataSet.setValues(barEntries);
-        barChart.getData().notifyDataChanged();
-        barChart.notifyDataSetChanged();
+        horizontalBarChart.getData().notifyDataChanged();
+        horizontalBarChart.notifyDataSetChanged();
     }
 }
