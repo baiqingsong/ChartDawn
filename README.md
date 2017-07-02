@@ -61,6 +61,26 @@
         * [PieEntry](#pieentry)
         * [PieDataSet](#piedataset)
         * [PieData](#piedata)
+* [RadarChart使用](#radarchart使用)
+    * [RadarChart事件的相关设置](#radarchart事件的相关设置)
+        * [setBackgroundColor](#setbackgroundcolor)
+        * [getDescription](#getdescription)
+        * [setWebLineWidth](#setweblinewidth)
+        * [setWebColor](#setwebcolor)
+        * [setWebAlpha](#setwebalpha)
+        * [setWebLineWidthInner](#setweblinewidthinner)
+        * [setWebColorInner](#setwebcolorinner)
+        * [setMarker](#setmarker)
+        * [animateXY](#animatexy)
+        * [getXAxis](#getxaxis)
+        * [getYAxis](#getyaxis)
+        * [getLegend](#getlegend)
+    * [RadarChart展示的相关设置](#radarchart展示的相关设置)
+        * [RadarChart控件](#radarchart控件)
+        * [RadarEntry](#radarentry)
+        * [RadarDataSet](#radardataset)
+        * [List<IRadarDataSet>](#list<iradardataset>)
+        * [RadarData](#radardata)
     
 
 
@@ -619,3 +639,182 @@ pieData.setValueFormatter(new PercentFormatter());//值添加百分比
 pieChart.setData(pieData);
 ```
 
+
+## RadarChart使用
+
+![radar_chart](app/src/main/assets/radar_chart.jpg "雷达图表截图")
+
+### RadarChart事件的相关设置
+
+#### setBackgroundColor
+设置背景颜色
+```
+radarChart.setBackgroundColor(Color.rgb(60, 65, 82));//设置图表的背景颜色
+```
+
+#### getDescription
+设置右下角的description的显示
+```
+radarChart.getDescription().setEnabled(false);//设置右下角的description不显示
+```
+
+#### setWebLineWidth
+设置外层每个点到中心点的线的宽度（y轴）
+```
+radarChart.setWebLineWidth(1f);//设置每个角到中心的线的宽度
+```
+
+#### setWebColor
+设置外层每个点到中心点的线的颜色（y轴）
+```
+radarChart.setWebColor(Color.LTGRAY);//设置每个角到中心的线的颜色
+```
+
+#### setWebAlpha
+设置外层所有线的颜色的透明度（y轴和x轴）
+```
+radarChart.setWebAlpha(100);//设置外圈的线的透明度（包括每个角到中心的线和外圈的线）
+```
+
+#### setWebLineWidthInner
+设置外层的线的宽度（x轴）
+```
+radarChart.setWebLineWidthInner(1f);//设置外圈的线的宽度
+```
+
+#### setWebColorInner
+设置外层的线的颜色（x轴）
+```
+radarChart.setWebColorInner(Color.LTGRAY);//设置外圈的线的颜色
+```
+
+#### setMarker
+设置点击的markerView
+```
+MarkerView mv = new RadarMarkerView(this, R.layout.radar_markerview);//设置点击时的markerView
+mv.setChartView(radarChart);
+radarChart.setMarker(mv);
+```
+自定义markView的代码：
+```
+public class RadarMarkerView extends MarkerView {
+
+    private TextView tvContent;
+    private DecimalFormat format = new DecimalFormat("##0");
+
+    public RadarMarkerView(Context context, int layoutResource) {
+        super(context, layoutResource);
+
+        tvContent = (TextView) findViewById(R.id.tvContent);
+    }
+
+    @Override
+    public void refreshContent(Entry e, Highlight highlight) {
+        tvContent.setText(format.format(e.getY()) + " %");
+
+        super.refreshContent(e, highlight);
+    }
+
+    @Override
+    public MPPointF getOffset() {
+        return new MPPointF(-(getWidth() / 2), -getHeight() - 10);
+    }
+}
+```
+
+#### animateXY
+设置显示动画
+```
+radarChart.animateXY(
+    1400, 1400,
+    Easing.EasingOption.EaseInOutQuad,
+    Easing.EasingOption.EaseInOutQuad);//设置动画
+```
+
+#### getXAxis
+设置x轴的相关属性
+```
+XAxis xAxis = radarChart.getXAxis();//设置外层的文字等相关属性
+xAxis.setTextSize(9f);
+xAxis.setYOffset(0f);
+xAxis.setXOffset(0f);
+xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+    private String[] mActivities = new String[]{"Burger", "Steak", "Salad", "Pasta", "Pizza"};
+
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        return mActivities[(int) value % mActivities.length];
+    }
+});
+xAxis.setTextColor(Color.WHITE);
+```
+
+#### getYAxis
+设置y轴的相关属性
+```
+YAxis yAxis = radarChart.getYAxis();//设置外层点到中间点的文字属性
+yAxis.setLabelCount(5, false);
+yAxis.setTextSize(9f);
+yAxis.setAxisMinimum(0f);
+yAxis.setAxisMaximum(80f);
+yAxis.setDrawLabels(false);
+```
+
+#### getLegend
+设置legend
+```
+Legend legend = radarChart.getLegend();//设置lebel
+legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+legend.setDrawInside(false);
+legend.setXEntrySpace(7f);
+legend.setYEntrySpace(5f);
+legend.setTextColor(Color.WHITE);
+```
+
+### RadarChart展示的相关设置
+
+#### RadarChart控件
+RadarChart在xml中的引用
+```
+<com.github.mikephil.charting.charts.RadarChart
+    android:id="@+id/radar_chart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```
+
+#### RadarEntry
+RadarChart的数据（最小数据单位）
+```
+new RadarEntry(model.getNum())
+```
+
+#### RadarDataSet
+RadarChart数据线的属性设置
+```
+RadarDataSet dataSet = new RadarDataSet(radarEntries, "radar chart");
+dataSet.setColor(Color.RED);//雷达状图表线的颜色
+dataSet.setFillColor(Color.YELLOW);//中间填充的颜色，需要设置setDrawFilled
+dataSet.setDrawFilled(true);//是否设置中间填充
+dataSet.setFillAlpha(180);//设置填充的透明度
+dataSet.setLineWidth(2f);//设置中间线的宽度
+```
+
+#### List<IRadarDataSet>
+RadarChart线的属性设置的集合
+```
+List<IRadarDataSet> dataSets = new ArrayList<>();
+dataSets.add(dataSet);
+```
+
+#### RadarData
+RadarChart添加最直接的数据（包含其他属性等所有设置）
+```
+RadarData radarData = new RadarData(dataSets);
+radarData.setValueTextSize(8f);//设置中间线对应的文字大小
+radarData.setDrawValues(false);//设置中间线对应的文字是否显示
+radarData.setValueTextColor(Color.BLUE);//设置中间线对应的文字的颜色
+radarChart.setData(radarData);
+```

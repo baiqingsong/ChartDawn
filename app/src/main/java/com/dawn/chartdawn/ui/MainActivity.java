@@ -38,4 +38,8 @@ public class MainActivity extends BaseActivity {
     public void jumpToPieChart(View view){
         jumpTo(PieChartActivity.class);
     }
+    public void jumpToRadarChart(View view){
+        jumpTo(RadarChartActivity.class);
+    }
+
 }

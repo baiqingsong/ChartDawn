@@ -20,6 +20,8 @@
         <activity android:name=".ui.BarChartActivity"/>
         <activity android:name=".ui.HorizontalBarChartActivity"/>
         <activity android:name=".ui.PieChartActivity" />
+        <activity android:name=".ui.RadarChartActivity" />
+
     </application>
 
 </manifest>
