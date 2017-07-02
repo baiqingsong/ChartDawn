@@ -43,7 +43,7 @@ dependencies {
 
 ## LineChart使用
 
-![line_chart]("app/src/main/assets/line_chart.jpg" "线性图表截图")
+![line_chart](app/src/main/assets/line_chart.jpg "线性图表截图")
 
 ### LineChart事件的相关设置
 
