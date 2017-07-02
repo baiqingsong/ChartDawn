@@ -42,7 +42,7 @@
         * [List<IBarDataSet>](#list<ibardataset>)
         * [BarData](#bardata)
 * [HorizontalBarChart使用](#horizontalbarchart使用)
-* [PieChart使用](#PieChart使用)
+* [PieChart使用](#piechart使用)
     * [PieChart事件的相关设置](#piechart事件的相关设置)
         * [setUsePercentValues](#setusepercentvalues)
         * [getDescription](#getdescription)
