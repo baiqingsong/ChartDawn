@@ -91,7 +91,7 @@ public class LineChartActivity extends BaseActivity {
 //        lineChart.setPinchZoom(false);
         lineChart.getDescription().setEnabled(false);//右下角的label是否显示
 //        lineChart.setDrawGridBackground(false);
-        lineChart.animateX(500);
+        lineChart.animateX(1000);
         Legend legend = lineChart.getLegend();
         legend.setForm(Legend.LegendForm.LINE);//设置下方legend显示样式
         lineChart.getAxisRight().setEnabled(false);//右侧y轴不显示

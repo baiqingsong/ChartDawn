@@ -27,6 +27,7 @@
         * [setDrawBarShadow](#setdrawbarshadow)
         * [setDrawValueAboveBar](#setdrawvalueabovebar)
         * [getDescription](#getdescription)
+        * [animateX](#animatex)
         * [getXAxis](#getxaxis)
         * [IAxisValueFormatter](#iaxisvalueformatter)
         * [getAxisLeft](#getaxisleft)
@@ -270,6 +271,12 @@ barChart.setDrawValueAboveBar(true);//是否将值写到圆柱上方
 设置右下角的description是否显示
 ```
 barChart.getDescription().setEnabled(false);//右下角的description是否显示
+```
+
+#### animateX
+动画设置
+```
+arChart.animateX(1000);//动画效果
 ```
 
 #### getXAxis

@@ -74,6 +74,7 @@ public class BarChartActivity extends BaseActivity {
         barChart.getDescription().setEnabled(false);//右下角的description是否显示
 //        barChart.setMaxVisibleValueCount(60);//设置最大显示圆柱数量
 //        barChart.setDrawGridBackground(false);
+        barChart.animateX(1000);//动画效果
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
