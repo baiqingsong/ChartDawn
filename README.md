@@ -42,6 +42,25 @@
         * [List<IBarDataSet>](#list<ibardataset>)
         * [BarData](#bardata)
 * [HorizontalBarChart使用](#horizontalbarchart使用)
+* [PieChart使用](#PieChart使用)
+    * [PieChart事件的相关设置](#piechart事件的相关设置)
+        * [setUsePercentValues](#setusepercentvalues)
+        * [getDescription](#getdescription)
+        * [setCenterText](#setcentertext)
+        * [setDrawHoleEnabled](#setdrawholeenabled)
+        * [setHoleColor](#setholecolor)
+        * [setTransparentCircleColor](#settransparentcirclecolor)
+        * [setTransparentCircleAlpha](#settransparentcirclealpha)
+        * [setDrawCenterText](#setdrawcentertext)
+        * [setRotationAngle](#setrotationangle)
+        * [animateY](#animatey)
+        * [getLegend](#getlegend)
+        * [setOnChartValueSelectedListener](#setonchartvalueselectedlistener)
+    * [PieChart展示的相关设置](#piechart展示的相关设置)
+        * [PieChart控件](#piechart控件)
+        * [PieEntry](#pieentry)
+        * [PieDataSet](#piedataset)
+        * [PieData](#piedata)
     
 
 
@@ -252,7 +271,7 @@ lineChart.notifyDataSetChanged();
 
 ## BarChart使用
 
-![bar_chart](app/src/main/assets/bar_chart.jpg "线性图表截图")
+![bar_chart](app/src/main/assets/bar_chart.jpg "圆柱图表截图")
 
 ### BarChart事件的相关设置
 
@@ -435,7 +454,7 @@ barChart.setData(barData);
 
 ## HorizontalBarChart使用
 
-![bar_chart](app/src/main/assets/horizontal_bar_chart.jpg "线性图表截图")
+![horizontal_bar_chart](app/src/main/assets/horizontal_bar_chart.jpg "横向圆柱图表截图")
 
 横向圆柱图表
 和BarChart的相关属性一致，不同的是控件
@@ -445,3 +464,154 @@ barChart.setData(barData);
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 ```
+
+## PieChart使用
+
+![pie_chart](app/src/main/assets/pie_chart.jpg "饼状图表截图")
+
+### PieChart事件的相关设置
+
+#### setUsePercentValues
+设置饼状图显示为百分比，设置这个属性的同时需要设置pieData.setValueFormatter
+```
+pieChart.setUsePercentValues(true);//当前值显示成百分比，如果不设置这个属性pieData.setValueFormatter设置显示的是错误的
+```
+
+#### getDescription
+设置右下角的description不显示
+```
+pieChart.getDescription().setEnabled(false);//右下角description不显示
+```
+
+#### setCenterText
+设置中间文字
+```
+pieChart.setCenterText(generateCenterSpannableText());//设置中间文字
+```
+其中generateCenterSpannableText的代码为：
+```
+private SpannableString generateCenterSpannableText() {
+    SpannableString s = new SpannableString("ChartDawn\npie chart");
+    s.setSpan(new RelativeSizeSpan(1.7f), 0, 9, 0);
+    s.setSpan(new StyleSpan(Typeface.NORMAL), 9, s.length() - 10, 0);
+    s.setSpan(new ForegroundColorSpan(Color.GRAY), 9, s.length() - 10, 0);
+    s.setSpan(new RelativeSizeSpan(.8f), 9, s.length() - 10, 0);
+    s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 9, s.length(), 0);
+    s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 9, s.length(), 0);
+    return s;
+}
+```
+
+#### setDrawHoleEnabled
+是否显示成同心圆的形式
+```
+pieChart.setDrawHoleEnabled(true);//是否显示成同心圆的形式
+```
+
+#### setHoleColor
+设置同心圆中心的颜色
+```
+pieChart.setHoleColor(Color.WHITE);//同心圆的圆心颜色
+```
+
+#### setTransparentCircleColor
+设置同心圆的内圈和外圈之间的颜色
+```
+pieChart.setTransparentCircleColor(Color.WHITE);//设置同心圆的中心圆和外圈之间的颜色
+```
+
+#### setTransparentCircleAlpha
+设置同心圆的内圈和外圈之间的颜色透明度
+```
+pieChart.setTransparentCircleAlpha(110);//设置同心圆的中心圆和外圈之间的颜色透明度
+```
+
+#### setDrawCenterText
+设置中间文字是否显示
+```
+pieChart.setDrawCenterText(true);//是否显示中间的文字
+```
+
+#### setRotationAngle
+设置饼状图旋转角度
+```
+pieChart.setRotationAngle(0);//旋转的角度
+```
+
+#### animateY
+设置饼状图的动画
+```
+pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);//动画
+```
+
+#### getLegend
+设置legend的相关属性
+```
+Legend legend = pieChart.getLegend();//legend的设置
+legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+legend.setDrawInside(false);
+legend.setXEntrySpace(7f);
+legend.setYEntrySpace(0f);
+legend.setYOffset(0f);
+pieChart.setEntryLabelColor(Color.WHITE);
+pieChart.setEntryLabelTextSize(12f);
+```
+
+#### setOnChartValueSelectedListener
+设置点击事件
+```
+pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+    @Override
+    public void onValueSelected(Entry entry, Highlight h) {
+        toastUI(entry.getY() + "");
+    }
+
+    @Override
+    public void onNothingSelected() {
+        toastUI("nothing");
+    }
+});
+```
+
+
+### PieChart展示的相关设置
+
+#### PieChart控件
+PieChart在xml引用为：
+```
+<com.github.mikephil.charting.charts.PieChart
+    android:id="@+id/pie_chart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```
+
+#### PieEntry
+饼状图的最小数据填充
+```
+new PieEntry(model.getNum(), model.getIntro(), getResources().getDrawable(R.mipmap.ic_launcher))
+```
+
+#### PieDataSet
+饼状图每个部分的样式设置
+```
+PieDataSet dataSet = new PieDataSet(pieEntries, "pie chart");
+dataSet.setDrawIcons(false);//不显示实体类中的图片
+dataSet.setSliceSpace(3f);//每一个部分分割空白宽度
+ArrayList<Integer> colors = new ArrayList<Integer>();
+for (int c : ColorTemplate.VORDIPLOM_COLORS)
+    colors.add(c);
+dataSet.setColors(colors);//设置颜色
+```
+
+#### PieData
+饼状图数据的添加
+```
+PieData pieData = new PieData(dataSet);
+pieData.setValueTextSize(11f);//值的字体大小
+pieData.setValueTextColor(Color.WHITE);//值的字体颜色
+pieData.setValueFormatter(new PercentFormatter());//值添加百分比
+pieChart.setData(pieData);
+```
+

@@ -35,4 +35,7 @@ public class MainActivity extends BaseActivity {
     public void jumpToHorizontalBarChart(View view){
         jumpTo(HorizontalBarChartActivity.class);
     }
+    public void jumpToPieChart(View view){
+        jumpTo(PieChartActivity.class);
+    }
 }

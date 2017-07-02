@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.PieChartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,7 @@
         <activity android:name=".ui.LineChartActivity"/>
         <activity android:name=".ui.BarChartActivity"/>
         <activity android:name=".ui.HorizontalBarChartActivity"/>
+        <!--<activity android:name=".ui.PieChartActivity" />-->
     </application>
 
 </manifest>

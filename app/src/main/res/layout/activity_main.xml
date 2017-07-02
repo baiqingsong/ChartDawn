@@ -18,5 +18,10 @@
         android:layout_height="wrap_content"
         android:text="jump to Horizontal Bar Chart"
         android:onClick="jumpToHorizontalBarChart"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="jump to Pie Chart"
+        android:onClick="jumpToPieChart"/>
 
 </LinearLayout>

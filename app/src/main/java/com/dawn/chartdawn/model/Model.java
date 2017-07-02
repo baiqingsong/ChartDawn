@@ -7,9 +7,14 @@ package com.dawn.chartdawn.model;
 
 public class Model {
     private int id;
-    private float num;
+    private float num;//数据
+    private String intro;//简介
 
     public float getNum() {
         return num;
+    }
+
+    public String getIntro() {
+        return intro;
     }
 }
